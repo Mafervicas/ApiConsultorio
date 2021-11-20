@@ -3,9 +3,11 @@ package com.equipo02.controller;
 
 import com.equipo02.interfaceService.ICitaService;
 import com.equipo02.interfaceService.IDoctoresService;
+import com.equipo02.interfaceService.IPersonaService;
 import com.equipo02.interfaceService.IUsuarioService;
 import com.equipo02.modelo.Cita;
 import com.equipo02.modelo.Doctores;
+import com.equipo02.modelo.Persona;
 import com.equipo02.modelo.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,6 +55,20 @@ public class Controlador {
     public String listarDoctores (Model model) {
         List<Doctores> doctores = serviceDoctores.listar();
         model.addAttribute("Doctores", doctores);
+        return "index";
+
+    }
+
+    //---------------Persona-------------------------
+
+    @Autowired
+    private IPersonaService servicePersona;
+
+
+    @GetMapping("/listar")
+    public String listarPersona (Model model) {
+        List<Persona> personas = servicePersona.listar();
+        model.addAttribute("Persona", personas);
         return "index";
 
     }
