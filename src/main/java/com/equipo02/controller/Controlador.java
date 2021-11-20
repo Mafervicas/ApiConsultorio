@@ -1,14 +1,8 @@
 package com.equipo02.controller;
 
 
-import com.equipo02.interfaceService.ICitaService;
-import com.equipo02.interfaceService.IDoctoresService;
-import com.equipo02.interfaceService.IPersonaService;
-import com.equipo02.interfaceService.IUsuarioService;
-import com.equipo02.modelo.Cita;
-import com.equipo02.modelo.Doctores;
-import com.equipo02.modelo.Persona;
-import com.equipo02.modelo.Usuario;
+import com.equipo02.interfaceService.*;
+import com.equipo02.modelo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,7 +63,20 @@ public class Controlador {
     public String listarPersona (Model model) {
         List<Persona> personas = servicePersona.listar();
         model.addAttribute("Persona", personas);
-        return "index";
+        return "index";}
+
+
+        //---------------Paciente-------------------------
+
+        @Autowired
+        private IPacienteService servicePaciente;
+
+
+        @GetMapping("/listar")
+        public String listarPaciente (Model model) {
+            List<Paciente> pacientes = servicePaciente.listar();
+            model.addAttribute("Paciente", pacientes);
+            return "index";
 
     }
 
